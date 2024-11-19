@@ -1,0 +1,15 @@
+node_modules
+
+.vscode
+
+.DS_Store
+
+/dist
+
+/dist_keycloak
+/build
+
+package-lock.json
+realm-export.json
+
+/public/keycloakify-dev-resources

@@ -1,0 +1,48 @@
+@use "@/assets/styles/variables.scss" as *;
+
+
+.social-link {
+	border: 1px solid $background-secondary;
+	border-radius: 5px;
+
+	font-weight: 600;
+	font-size: 16px;
+
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+
+	color: $text-primary;
+
+	height: 50px;
+	width: 100%;
+
+	transition: all 0.1s ease-in-out;
+
+	&__image {
+		object-fit: contain;
+		height: 19px;
+		width: 19px;
+	}
+}	
+
+
+@media(hover: hover) {
+	.social-link:hover {
+		border-color: $text-accent;
+		color: $text-accent;
+	}
+}
+
+@media(max-width: 500px) {
+	.social-link {
+		font-size: 14px;
+		height: 40px;
+
+		&__image {
+			height: 16px;
+			width: 16px;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+@use "@/assets/styles/variables.scss" as *;
+
+
+.line {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+
+	font-size: 16px;
+
+	margin-bottom: 30px;
+
+	&::before,
+	&::after {
+		background: $border-primary;
+		content: "";
+
+		flex: 1 0 auto;
+
+		margin-top: 4px;
+		height: 1px;
+	}
+}
+
+
+@media(max-width: 500px) {
+	.line {
+		font-size: 14px;
+	}
+}

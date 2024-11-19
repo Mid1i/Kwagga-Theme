@@ -1,0 +1,97 @@
+@use "@/assets/styles/variables.scss" as *;
+
+
+.field {
+	position: relative;
+	width: 100%;
+
+	$self: #{&};
+
+	&__label {
+		background: $background-primary;
+
+		font-size: 16px;
+
+		padding: 1px;
+
+		pointer-events: none;
+
+		position: absolute;
+		left: 20px;
+		top: 50%;
+
+		transform: translateY(-50%);
+		transition: all 0.1s ease-in-out;
+
+		&.error {
+			font-size: 12px;
+			top: 0px;
+		}
+
+		&.error {
+			color: $text-negative;
+			font-weight: 600;
+		}
+	}
+
+	&__input {
+		border: 1px solid $border-primary;
+		border-radius: 5px;
+
+		font-size: 16px;
+
+		padding: 0px 20px;
+
+		height: 50px;
+		width: 100%;
+
+		transition: all 0.1s ease-in-out;
+
+		&.password {
+			padding-right: 50px;
+		}
+
+		&:focus {
+			border-color: $border-secondary;
+		}
+
+		&:not(:placeholder-shown) + #{$self}__label,
+		&:focus + #{$self}__label {
+			font-size: 12px;
+			top: 0px;
+		}
+	}
+
+	&__icon {
+		cursor: pointer; 
+
+		position: absolute;
+		right: 20px;
+		top: 50%;
+
+		transform: translateY(-50%);
+	}
+}
+
+
+@media(hover: hover) {
+	.field__input:hover {
+		border-color: $text-accent;
+	}
+}
+
+@media(max-width: 500px) {
+	.field__label {
+		font-size: 14px;
+		left: 15px;
+	}
+
+	.field__input {
+		padding: 0px 10px;
+		height: 45px;
+
+		&.password {
+			padding-right: 45px;
+		}
+	}
+}

@@ -1,0 +1,46 @@
+@use "@/assets/styles/variables.scss" as *;
+
+
+.button {
+	background: $background-accent;
+	border-radius: 5px;
+
+	color: $text-secondary;
+	font-weight: 600;
+	font-size: 16px;
+
+	height: 50px;
+	width: 100%;
+
+	transition: all 0.1s ease-in-out;
+
+	&:disabled {
+		background: $border-primary;
+		pointer-events: none;
+	}
+
+	&.transparent {
+		background: transparent;
+		border: 1px solid currentColor;
+
+		color: $text-primary;
+	}
+}
+
+
+@media(hover: hover) {
+	.button:not(:disabled, .transparent):hover {
+		background: $background-accent-hover;
+	}
+
+	.button.transparent:hover {
+		color: $background-accent;
+	}
+}
+
+@media(max-width: 500px) {
+	.button {
+		font-size: 14px;
+		height: 40px;
+	}
+}
