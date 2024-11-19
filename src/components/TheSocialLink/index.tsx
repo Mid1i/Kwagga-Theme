@@ -10,6 +10,7 @@ export default function TheSocialLink(props: TheSocialLinkProps) {
 		alias,
 		displayName,
 		loginUrl,
+		tabIndex,
 		i18n
 	} = props;
 
@@ -20,6 +21,7 @@ export default function TheSocialLink(props: TheSocialLinkProps) {
 		<>
 			<a 
 				className="social-link" 
+				tabIndex={tabIndex}
 				href={loginUrl}
 			>
 				<img 

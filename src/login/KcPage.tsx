@@ -4,8 +4,12 @@ import type { KcContext } from "./KcContext";
 
 import { useI18n } from "./i18n";
 
-import LoginPage from "@/login/pages/Login";
-import RegisterPage from "@/login/pages/Register";
+import LoginUpdatePasswordPage from "./pages/LoginUpdatePassword";
+import LoginResetPasswordPage from "./pages/LoginResetPassword";
+import LoginVerifyEmailPage from "./pages/LoginVerifyEmail";
+import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
+import ErrorPage from "./pages/Error";
 
 
 export default function KcPage(props: { kcContext: KcContext }) {
@@ -27,6 +31,34 @@ export default function KcPage(props: { kcContext: KcContext }) {
           case "register.ftl":
             return (
               <RegisterPage
+                kcContext={kcContext}
+                i18n={i18n}
+              />
+            )
+          case "login-verify-email.ftl":
+            return (
+              <LoginVerifyEmailPage
+                kcContext={kcContext}
+                i18n={i18n}
+              />
+            )
+          case "login-reset-password.ftl":
+            return (
+              <LoginResetPasswordPage
+                kcContext={kcContext}
+                i18n={i18n}
+              />
+            )
+          case "login-update-password.ftl":
+            return (
+              <LoginUpdatePasswordPage
+                kcContext={kcContext}
+                i18n={i18n}
+              />
+            )
+          case "error.ftl":
+            return (
+              <ErrorPage
                 kcContext={kcContext}
                 i18n={i18n}
               />

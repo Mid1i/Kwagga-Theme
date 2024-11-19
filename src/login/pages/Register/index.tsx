@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { FormEvent, useReducer } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 
 import type { PageProps } from "@/login/PageProps";
@@ -11,8 +11,9 @@ import TheLineText from "@/components/TheLineText";
 import TheButton from "@/components/TheButton";
 import TheInput from "@/components/TheInput";
 
+import { setCookie, getCookie } from "@/helpers/cookie";
+
 import passwordIcons from "@/assets/icons/input.svg";
-import "./styles.scss";
 
 
 export default function Register(props: PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n>) {
@@ -31,9 +32,23 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
   const [isPasswordConfirmShown, setIsPasswordConfirmShown] = useReducer(prev => !prev, false);
   const [isPasswordShown, setIsPasswordShown] = useReducer(prev => !prev, false);
 
+  
+  const saveFormData = (event: FormEvent<HTMLFormElement>): boolean => {
+    const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+		setCookie("firstName", data.firstName.toString(), 5000);
+		setCookie("lastName", data.lastName.toString(), 5000);
+		setCookie("email", data.email.toString(), 5000);
+		setCookie("password", data.password.toString(), 5000);
+		
+		return true;
+	}
+
 
   return (
     <LoginTemplate
+      documentTitle={msgStr("registerTitleHtml")}
       kcContext={kcContext}
       i18n={i18n}
     >
@@ -49,6 +64,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
           </a>
         </p>
         <form
+          onSubmit={saveFormData}
           action={url.registrationAction}
           className="login__form"
           method="post" 
@@ -59,35 +75,39 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
                 autoFocus
                 autocomplete="firstName"
                 label={msgStr("firstNameLabel")}
+                defaultValue={getCookie("firstName") ?? ""}
                 error={messagesPerField.existsError("firstName") ? kcSanitize(messagesPerField.get("firstName")) : ""}
                 name="firstName"
-                tabIndex={0}
+                tabIndex={1}
                 type="text"
               />
             </div>
             <TheInput
               autocomplete="lastName"
               label={msgStr("lastNameLabel")}
+              defaultValue={getCookie("lastName") ?? ""}
               error={messagesPerField.existsError("lastName") ? kcSanitize(messagesPerField.get("lastName")) : ""}
               name="lastName"
-              tabIndex={1}
+              tabIndex={2}
               type="text"
             />
           </div>
           <TheInput
             autocomplete="email"
             label={msgStr("emailLabel")}
+            defaultValue={getCookie("email") ?? ""}
             error={messagesPerField.existsError("username", "email") ? kcSanitize(messagesPerField.getFirstError("username", "email")) : ""}
             name="email"
-            tabIndex={2}
+            tabIndex={3}
             type="email"
           />
           <TheInput
             autocomplete="current-password"
             label={msgStr("passwordLabel")}
+            defaultValue={getCookie("password") ?? ""}
             error={messagesPerField.existsError("password") ? kcSanitize(messagesPerField.get("password")) : ""}
             name="password"
-            tabIndex={3}
+            tabIndex={4}
             type={isPasswordShown ? 'text' : 'password'}
           >
             <svg 
@@ -104,7 +124,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
             label={msgStr("passwordConfirmLabel")}
             error={messagesPerField.existsError("password-confirm") ? kcSanitize(messagesPerField.get("password-confirm")) : ""}
             name="password-confirm"
-            tabIndex={4}
+            tabIndex={5}
             type={isPasswordConfirmShown ? 'text' : 'password'}
           >
             <svg 
@@ -124,12 +144,13 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
           <>
             <TheLineText i18n={i18n}/>
             <div className="login__social">
-              {social.providers.map(provider => (
+              {social.providers.map((provider, index) => (
                 <TheSocialLink 
                   displayName={provider.displayName}
                   loginUrl={provider.loginUrl}
                   alias={provider.alias}
                   key={provider.alias}
+                  tabIndex={6 + index}
                   i18n={i18n}
                 />
               ))}

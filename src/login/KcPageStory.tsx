@@ -7,48 +7,49 @@ import type { KcContext } from "./KcContext";
 import { themeNames, kcEnvDefaults } from "../kc.gen";
 import KcPage from "./KcPage";
 
+
 const kcContextExtension: KcContextExtension = {
-    themeName: themeNames[0],
-    properties: {
-        ...kcEnvDefaults
-    }
+  themeName: themeNames[0],
+  properties: {
+    ...kcEnvDefaults
+  }
 };
 
 const { getKcContextMock: getKcContextMock_base } = createGetKcContextMock({
-    kcContextExtension: {},
-    kcContextExtensionPerPage: {},
-    overrides: {},
-    overridesPerPage: {}
+  kcContextExtension: {},
+  kcContextExtensionPerPage: {},
+  overrides: {},
+  overridesPerPage: {}
 });
 
 const kcContextExtensionPerPage: KcContextExtensionPerPage = {
-    "register.ftl": {
-        social: getKcContextMock_base({ pageId: "login.ftl" }).social
-    }
+  "register.ftl": {
+    social: getKcContextMock_base({ pageId: "login.ftl" }).social
+  }
 };
 
 
 export const { getKcContextMock } = createGetKcContextMock({
-    kcContextExtension,
-    kcContextExtensionPerPage,
-    overrides: {},
-    overridesPerPage: {}
+  kcContextExtension,
+  kcContextExtensionPerPage,
+  overrides: {},
+  overridesPerPage: {}
 });
 
 
 export function createKcPageStory<PageId extends KcContext["pageId"]>(params: { pageId: PageId }) {
-    const { pageId } = params;
+  const { pageId } = params;
 
-    function KcPageStory(props: { kcContext?: DeepPartial<Extract<KcContext, { pageId: PageId }>> }) {
-        const { kcContext: overrides } = props;
+  function KcPageStory(props: { kcContext?: DeepPartial<Extract<KcContext, { pageId: PageId }>> }) {
+    const { kcContext: overrides } = props;
 
-        const kcContextMock = getKcContextMock({
-            pageId,
-            overrides
-        });
+    const kcContextMock = getKcContextMock({
+      pageId,
+      overrides
+    });
 
-        return <KcPage kcContext={kcContextMock} />;
-    }
+    return <KcPage kcContext={kcContextMock}/>;
+  }
 
-    return { KcPageStory };
+  return { KcPageStory };
 }

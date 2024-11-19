@@ -25,11 +25,12 @@ export default function TheInput(props: BaseInputProps) {
 				autoComplete={autocomplete}
 				className={ `field__input ${type === "password" ? "password" : ""}` }
 				defaultValue={defaultValue}
-				id={name}
-				name={name}
 				readOnly={isReadonly}
 				tabIndex={tabIndex}
+				placeholder=""
+				name={name}
 				type={type}
+				id={name}
 			/>
 			<label 
 				className={ `field__label ${error ? "error" : ""}` }

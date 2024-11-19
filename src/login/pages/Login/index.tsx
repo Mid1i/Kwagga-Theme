@@ -77,14 +77,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             defaultValue={login.username ?? ""}
             label={msgStr("emailLabel")}
             name="username"
-            tabIndex={0}
+            tabIndex={1}
             type="email"
           />
           <TheInput
             autocomplete="current-password"
             label={msgStr("passwordLabel")}
             name="password"
-            tabIndex={1}
+            tabIndex={2}
             type={isPasswordShown ? 'text' : 'password'}
           >
             <svg 
@@ -102,14 +102,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
               <TheCheckbox
                 checked={!!login.rememberMe}
                 label={msgStr("rememberMe")}
-                tabIndex={2}
+                tabIndex={3}
                 name="rememberMe"
               />
             )}
             {realm.resetPasswordAllowed && (
               <a 
                 href={url.loginResetCredentialsUrl} 
-                tabIndex={3} 
+                tabIndex={4} 
                 className="login__text login__text--accent login__text--self"
               >
                 { msgStr("doForgotPassword") }
@@ -125,7 +125,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
           <TheButton 
             isDisabled={isLoginButtonDisabled}
-            tabIndex={4}
+            tabIndex={5}
           >
             { msgStr("doLogin") }
           </TheButton>
@@ -135,12 +135,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
           <>
             <TheLineText i18n={i18n}/>
             <div className="login__social">
-              {social.providers.map(provider => (
+              {social.providers.map((provider, index) => (
                 <TheSocialLink 
                   displayName={provider.displayName}
                   loginUrl={provider.loginUrl}
                   alias={provider.alias}
                   key={provider.alias}
+                  tabIndex={6 + index}
                   i18n={i18n}
                 />
               ))}

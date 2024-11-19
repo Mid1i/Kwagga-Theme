@@ -9,23 +9,23 @@ import "@/assets/styles/default.scss";
 
 
 if (import.meta.env.DEV) {
-    window.kcContext = getKcContextMock({
-        pageId: "register.ftl",
-        overrides: {
-            locale: {
-                currentLanguageTag: "ru"
-            }
-        }
-    });
+  window.kcContext = getKcContextMock({
+    pageId: "error.ftl",
+    overrides: {
+      locale: {
+        currentLanguageTag: "ru"
+      }
+    }
+  });
 }
 
 
 createRoot(document.getElementById("root")!).render(
-    <StrictMode>
-        {!window.kcContext ? (
-            <h1>No Keycloak Context</h1>
-        ) : (
-            <KcPage kcContext={window.kcContext} />
-        )}
-    </StrictMode>
+  <StrictMode>
+    {!window.kcContext ? (
+      <h1>No Keycloak Context</h1>
+    ) : (
+      <KcPage kcContext={window.kcContext} />
+    )}
+  </StrictMode>
 );

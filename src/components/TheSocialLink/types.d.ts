@@ -6,5 +6,7 @@ export type TheSocialLinkProps = {
 	displayName: string;
 	loginUrl: string;
 
+	tabIndex: number;
+
 	i18n: I18n;
 }
