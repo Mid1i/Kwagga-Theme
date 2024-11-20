@@ -17,6 +17,10 @@
 		font-weight: 800;
 
 		margin-bottom: 10px;
+
+		&--mb {
+			margin-bottom: 100px;
+		}
 	}
 
 	&__text {
@@ -122,6 +126,11 @@
 		&__title {
 			font-size: 28px;
 			margin-bottom: 5px;
+
+			&--mb {
+				font-size: 24px;
+				margin-bottom: 80px;
+			}
 		}
 
 		&__text {
