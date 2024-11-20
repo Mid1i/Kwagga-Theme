@@ -44,7 +44,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
         <section className="login">
           <h2 className="login__title">{ msgStr("updatePasswordTitle") }</h2>
           <p className="login__text">{ msgStr("updatePasswordInstruction") }</p>
-			<form 
+			      <form 
               onSubmit={saveFormData} 
               action={url.loginAction} 
               method="post" 
@@ -98,7 +98,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
 
             <TheButton>{ msgStr("doSubmit") }</TheButton>
           </form>
-		</section>
+		    </section>
       </LoginTemplate>
     );
 }
