@@ -40,7 +40,6 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
 		setCookie("firstName", data.firstName.toString(), 5000);
 		setCookie("lastName", data.lastName.toString(), 5000);
 		setCookie("email", data.email.toString(), 5000);
-		setCookie("password", data.password.toString(), 5000);
 		
 		return true;
 	}
@@ -104,7 +103,6 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
           <TheInput
             autocomplete="current-password"
             label={msgStr("passwordLabel")}
-            defaultValue={getCookie("password") ?? ""}
             error={messagesPerField.existsError("password") ? kcSanitize(messagesPerField.get("password")) : ""}
             name="password"
             tabIndex={4}
