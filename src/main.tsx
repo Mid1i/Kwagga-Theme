@@ -7,10 +7,10 @@ import { KcPage } from "./kc.gen";
 
 import "@/assets/styles/default.scss";
 
-// TODO: Сделать страницы login-idp-link-confirm, login-page-expired, logout-confirm
+
 if (import.meta.env.DEV) {
   window.kcContext = getKcContextMock({
-    pageId: "error.ftl",
+    pageId: "logout-confirm.ftl",
     overrides: {
       locale: {
         currentLanguageTag: "ru"
