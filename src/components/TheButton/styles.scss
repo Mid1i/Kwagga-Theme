@@ -19,22 +19,34 @@
 		pointer-events: none;
 	}
 
-	&.transparent {
+	&--transparent {
 		background: transparent;
 		border: 1px solid currentColor;
 
 		color: $text-primary;
 	}
+
+	&--logout {
+		background: $background-negative;
+	}
+
+	&--mb {
+		margin-bottom: 10px;
+	}
 }
 
 
 @media(hover: hover) {
-	.button:not(:disabled, .transparent):hover {
+	.button:not(:disabled, .button--transparent, .button--logout):hover {
 		background: $background-accent-hover;
 	}
 
-	.button.transparent:hover {
+	.button--transparent:hover {
 		color: $background-accent;
+	}
+
+	.button--logout:hover {
+		background: $background-negative-hover;
 	}
 }
 

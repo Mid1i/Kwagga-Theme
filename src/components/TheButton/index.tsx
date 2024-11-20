@@ -7,8 +7,12 @@ export default function TheButton(props: TheButtonProps) {
 	const {
 		isDisabled,
 		isTransparent,
+		isLogout,
+		isMargin,
 		tabIndex,
-		children
+		children,
+		value,
+		name
 	} = props;
 
 
@@ -16,7 +20,14 @@ export default function TheButton(props: TheButtonProps) {
 		<button 
 			disabled={isDisabled} 
 			tabIndex={tabIndex}
-			className={ `button ${isTransparent ? "transparent" : ""}` }
+			className={`
+				button 
+				${isTransparent ? "button--transparent" : ""} 
+			  ${isLogout ? "button--logout" : ""}
+				${isMargin ? "button--mb" : ""}
+			`}
+			defaultValue={value}
+			name={name}
 		>
 			{children}
 		</button>
