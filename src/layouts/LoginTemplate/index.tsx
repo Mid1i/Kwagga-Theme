@@ -18,6 +18,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     children 
   } = props;
 
+  const { url } = kcContext;
 
   const { i18n } = useI18n({ kcContext });
 
@@ -36,7 +37,10 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           className="container__background"
           src={ containerBg }
         />
-        <a className="container__logo" href="#" target="_blank">
+        <a 
+          className="container__logo" 
+          href={url.loginUrl} 
+        >
           <img 
             alt="Логотип PERO ID" 
             className="container__log-image"
