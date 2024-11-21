@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
 
 
-import { getKcContextMock } from "./login/KcPageStory";
+import { getKcContextMock } from "./account/KcPageStory";
 import { KcPage } from "./kc.gen";
 
 import "@/assets/styles/default.scss";
@@ -10,7 +10,7 @@ import "@/assets/styles/default.scss";
 
 if (import.meta.env.DEV) {
   window.kcContext = getKcContextMock({
-    pageId: "logout-confirm.ftl",
+    pageId: "account.ftl",
     overrides: {
       locale: {
         currentLanguageTag: "ru"
