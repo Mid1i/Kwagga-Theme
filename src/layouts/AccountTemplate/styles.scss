@@ -1,0 +1,267 @@
+@use "@/assets/styles/variables.scss" as *;
+
+
+.wrapper {
+	min-height: 100vh;
+	width: 100vw;
+}
+
+.header {
+	background: $background-primary;
+
+	align-items: flex-end;
+	display: flex;
+	justify-content: space-between;
+
+	padding: 15px 100px;
+
+	position: fixed;
+	left: 0px;
+	top: 0px;
+
+	width: 100%;
+	z-index: 4;
+
+	&__logo {
+		height: 25px;
+		width: 155px;
+	}
+
+	&__burger {
+		cursor: pointer;
+		display: none;
+	}
+
+	&__account {
+		align-items: center;
+		display: flex;
+		gap: 5px;
+		
+		transition: all 0.1s ease-in-out;
+
+		&-icon {
+			color: $text-primary;
+
+			transition: all 0.1s ease-in-out;
+			margin-left: 10px;
+		}
+
+		&-name {
+			text-transform: capitalize;
+			transition: all 0.1s ease-in-out;
+		}
+	}
+
+	&__popup {
+		background: $background-primary;
+		box-shadow: 0px 0px 2px 0px $box-shadow-primary;
+		border-radius: 15px;
+
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+
+		padding: 10px 30px;
+
+		pointer-events: none;
+		transition: all 0.1s ease-in-out;
+		opacity: 0;
+
+		position: absolute;
+		right: 100px;
+		top: 100%;
+
+		z-index: 4;
+
+		&--visible {
+			pointer-events: auto;
+			opacity: 1;
+		}
+	}
+
+	&__fullname {
+		font-weight: 600;
+		font-size: 18px;
+		text-transform: capitalize;
+	}
+
+	&__email {
+		font-size: 14px;
+		margin-bottom: 25px;
+	}
+
+	&__logout {
+		align-items: center;
+		display: flex;
+		gap: 10px;
+
+		color: $text-primary;
+		font-size: 14px;
+
+		transition: all 0.1s ease-in-out;
+
+		&-icon {
+			color: $text-primary;
+			transition: all 0.1s ease-in-out;
+		}
+	}
+}
+
+.aside-menu {
+	background: $background-primary;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 85px 0px;
+
+	position: fixed;
+	left: 100px;
+	top: 0px;
+
+	height: 100vh;
+
+	z-index: 3;
+
+	&__logo,
+	&__logout,
+	&__email,
+	&__icon,
+	&__fullname {
+		display: none;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+
+		&-link {
+			align-items: center;
+			display: flex;
+			gap: 15px;
+
+			color: $text-primary;
+			font-weight: 600;
+
+			padding: 12px 15px;
+
+			border-radius: 10px;
+
+			transition: all 0.1s ease-in-out;
+
+			&--current {
+				background: $background-tertiary;
+			}
+		}
+
+		&-icon {
+			color: $text-primary;
+			transition: all 0.1s ease-in-out;
+		}
+	}
+}
+
+
+@media(hover: hover) {
+	.header__account:hover {
+		color: $text-accent;
+
+		& svg, & b {
+			color: $text-accent;
+		}
+	}
+
+	.header__logout:hover {
+		color: $text-negative;
+
+		& svg {
+			color: $text-negative;
+		}
+	}
+
+	.aside-menu__list-link:not(.aside-menu__list-link--current):hover {
+		color: $text-accent;
+
+		& svg {
+			color: $text-accent;
+		}
+	}
+}
+
+@media(max-width: 1024px) {
+	.header {
+		padding: 15px;
+		z-index: 3;
+
+		&__account {
+			display: none;
+		}
+
+		&__burger {
+			display: block;
+		}
+	}
+
+	.aside-menu {
+		align-items: center;
+
+		padding: 15px 15px 80px;
+
+		right: -100%;
+		left: auto;
+		
+		width: 100%;
+		
+		transition: all 0.3s ease-in-out;
+		z-index: 5;
+
+		&--visible {
+			right: 0px;
+		}
+
+		&__icon {
+			display: block;
+
+			position: absolute;
+			right: 15px;
+			top: 20px;
+		}
+
+		&__logo {
+			display: block;
+			margin-bottom: 50px;
+		}
+
+		&__fullname {
+			display: block;
+		}
+
+		&__email {
+			display: block;
+			margin-bottom: 100px;
+		}
+
+		&__list {
+			align-items: center;
+			flex: 1 0 auto;
+			gap: 20px;
+
+			&-link {
+				gap: 10px;
+				font-size: 14px;
+				text-align: center;
+			}
+
+			&-icon {
+				height: 18px;
+				width: 18px;
+			}
+		}
+
+		&__logout {
+			display: flex;
+		}
+	}
+}
