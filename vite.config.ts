@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
       react(),
       keycloakify({
-        accountThemeImplementation: "none",
+        accountThemeImplementation: "Multi-Page",
         startKeycloakOptions: {
           realmJsonFilePath: "./realm-export.json"
         }
@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@/": "/src/",
+      "@/account": "/src/account",
       "@/assets": "/src/assets",
       "@/components": "/src/components",
       "@/helpers": "/src/helpers",
