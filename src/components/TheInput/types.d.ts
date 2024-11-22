@@ -6,7 +6,6 @@ export type BaseInputProps = {
 	autoFocus?: boolean;
 	defaultValue?: string;
 	isReadonly?: boolean;
-	isDisabled?: boolean;
 	tabIndex?: number;
 	type: string;
 	name: string;
