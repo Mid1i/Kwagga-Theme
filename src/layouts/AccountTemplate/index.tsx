@@ -100,7 +100,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         <span className="aside-menu__email header__email">{ account.email }</span>
 
         <ul className="aside-menu__list">
-          {renderMenuEl("Личные данные", "credentials", "account", url.accountUrl)}
+          {renderMenuEl("Данные", "credentials", "account", url.accountUrl)}
           {renderMenuEl("Вход в аккаунт", "login", "password", url.passwordUrl)}
           {renderMenuEl("Активность", "activity", "sessions", url.sessionsUrl)}
           {renderMenuEl("Привязанные аккаунты", "social", "identity", url.socialUrl)}
