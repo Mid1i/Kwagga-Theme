@@ -12,6 +12,7 @@ export default function TheInput(props: BaseInputProps) {
 		error,
 		name,
 		isReadonly,
+		isDisabled,
 		label,
 		tabIndex,
 		type,
@@ -25,6 +26,7 @@ export default function TheInput(props: BaseInputProps) {
 				autoComplete={autocomplete}
 				className={ `field__input ${type === "password" ? "password" : ""}` }
 				defaultValue={defaultValue}
+				disabled={isDisabled}
 				readOnly={isReadonly}
 				tabIndex={tabIndex}
 				placeholder=""
