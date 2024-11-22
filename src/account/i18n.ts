@@ -7,11 +7,25 @@ const { useI18n, ofTypeI18n } = i18nBuilder
   .withExtraLanguages({})
   .withCustomTranslations({
     "en": {
-      accountTitleHtml: "KWAGGA - profile",
+      accountTitleHtml: "KWAGGA - credentials",
+      accountTitle: "Your credentials",
+      accountInstruction: "In ID, your data is always at hand.",
+      emailLabel: "E-mail",
+      firstNameLabel: "First name",
+      lastNameLabel: "Last name",
+      doSave: "Save",
+      doCancel: "Cancel",
       doLogout: "Sign out"
     },
     "ru": {
-      accountTitleHtml: "KWAGGA - личный кабинет",
+      accountTitleHtml: "KWAGGA - персональные данные",
+      accountTitle: "Ваши данные",
+      accountInstruction: "В ID ваши данные всегда под рукой.",
+      emailLabel: "E-mail",
+      firstNameLabel: "Ваше имя",
+      lastNameLabel: "Ваша фамилия",
+      doSave: "Сохранить",
+      doCancel: "Отменить",
       doLogout: "Выйти"
     }
   })
