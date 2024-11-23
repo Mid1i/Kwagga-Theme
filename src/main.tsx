@@ -10,7 +10,7 @@ import "@/assets/styles/default.scss";
 
 if (import.meta.env.DEV) {
   window.kcContext = getKcContextMock({
-    pageId: "account.ftl",
+    pageId: "password.ftl",
     overrides: {
       locale: {
         currentLanguageTag: "ru"
