@@ -3,13 +3,14 @@
 $text-primary:              #040308;
 $text-secondary:            #FFFFFF;
 $text-tertiary:             rgb(4, 3, 8, .4);
+$text-quaternary:				    #85889e;
 
 $text-accent:               #312ECB;
 $text-accent-hover:         #4644D2;
 $text-accent-active:        #1915D4;
 
 $text-negative:             #E31C1C;
-$text-positive: 							#34A853;
+$text-positive: 						#34A853;
 
 /* ================ */
 
@@ -38,6 +39,10 @@ $background-accent-active:  #1915D4;
 
 $background-negative:       #E31C1C;
 $background-negative-hover: #df4040;
+$background-negative-tr:		rgb(227, 28, 28, .2);
+
+$background-positive:			  #34A853;
+$background-positive-tr:		rgb(52, 168, 83, .2);
 
 /* ====================== */
 
