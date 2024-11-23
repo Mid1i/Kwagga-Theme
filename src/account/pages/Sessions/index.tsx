@@ -20,8 +20,6 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 	const { kcContext, i18n } = props;
 
 	const { url, stateChecker } = kcContext;
-
-	// TODO: Разобраться с выходом из аккаунта
 	
 	const { msgStr } = i18n;
 
@@ -60,7 +58,19 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 
 	const endSession = () => {
 		removeSessionById(detailedSession.id);
+		closePopup();
+	}
+
+	const closePopup = () => {
 		setIsPopupShown();
+		window.setTimeout(() => setDetailedSession({
+			current: false,
+			os: "",
+			ip: "",
+			browser: "",
+			time: "",
+			id: ""
+		}), 200);
 	}
 
 	useEffect(() => {
@@ -145,7 +155,7 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 
 				<div className={`blackout ${isPopupShown ? "blackout--visible" : ""}`}>
 					<div className={`account__session ${isPopupShown ? "account__session--visible" : ""}`}>
-						<svg onClick={setIsPopupShown} className="account__session-cross" height="24" width="24">
+						<svg onClick={closePopup} className="account__session-cross" height="24" width="24">
 							<use xlinkHref={`${menuIcons}#cross`}/>
 						</svg>
 						<svg className="account__session-icon" height="24" width="24">

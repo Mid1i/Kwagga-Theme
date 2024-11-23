@@ -33,9 +33,11 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
 					<p className="account__text account__text--mb">{ msgStr("identityInstruction") }</p>
 					{federatedIdentity.identities.filter(identity => identity.connected).map(identity => (
 						<div className="account__connected" key={identity.providerId}>
-							<svg className="account__connected-icon" height="24" width="24">
-								<use xlinkHref={`${identity.displayName.toLowerCase() === "google" ? google : yandex}`}/>
-							</svg>
+							<img
+								className="account__connected-icon"
+								alt={identity.displayName}
+								src={identity.displayName.toLowerCase() === "google" ? google : yandex}
+							/>
 							<h6 className="account__connected-title">
 								{ identity.displayName.toLowerCase() === "yandex" ? "Яндекс" : identity.displayName }
 								<span>{ identity.userName }</span>
