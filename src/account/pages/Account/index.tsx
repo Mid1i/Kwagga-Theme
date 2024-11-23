@@ -1,6 +1,4 @@
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
-
-import type { PageProps } from "@/account/PageProps";
+import type { PageProps } from "@/types/PageProps";
 import type { KcContext } from "@/account/KcContext";
 import type { I18n } from "@/account/i18n";
 
@@ -14,7 +12,7 @@ import "./styles.scss";
 export default function Account(props: PageProps<Extract<KcContext, { pageId: "account.ftl" }>, I18n>) {
     const { kcContext, i18n } = props;
 
-    const { url, realm, messagesPerField, account, stateChecker } = kcContext;
+    const { url, messagesPerField, account, message, stateChecker } = kcContext;
 
     const { msgStr } = i18n;
 
@@ -26,37 +24,40 @@ export default function Account(props: PageProps<Extract<KcContext, { pageId: "a
 				kcContext={kcContext}
 				i18n={i18n}
 			>
-				<div className="account">
-					<h1 className="account__title">{ msgStr("accountTitle") }</h1>
+				<section className="account">
+					<h2 className="account__title">{ msgStr("accountTitle") }</h2>
 					<p className="account__text">{ msgStr("accountInstruction") }</p>
 					<form action={url.accountUrl} method="post" className="account__form">
+						{(message && message.type === "success") && (
+							<span className="account__message">{ message.summary }</span>
+						)}
+
 						<TheInput
-							autoFocus
 							autocomplete="email"
-							isReadonly={realm.editUsernameAllowed}
-							error={messagesPerField.existsError("email") ? kcSanitize(messagesPerField.get("email")) : ""}
+							error={messagesPerField.printIfExists("username", msgStr("usernameError")) || messagesPerField.printIfExists("email", msgStr("emailError"))}
 							defaultValue={account.username ?? ""}
 							label={msgStr("emailLabel")}
 							name="username"
-							tabIndex={1}
 							type="email"
+							isReadonly
 						/>
 						<TheInput
+							autoFocus
 							autocomplete="fistName"
 							defaultValue={account.firstName ?? ""}
-							error={messagesPerField.existsError("firstName") ? kcSanitize(messagesPerField.get("firstName")) : ""}
+							error={messagesPerField.printIfExists("firstName", msgStr("firstNameError"))}
 							label={msgStr("firstNameLabel")}
 							name="firstName"
-							tabIndex={2}
+							tabIndex={1}
 							type="text"
 						/>
 						<TheInput
 							autocomplete="lastName"
 							defaultValue={account.lastName ?? ""}
-							error={messagesPerField.existsError("lastName") ? kcSanitize(messagesPerField.get("lastName")) : ""}
+							error={messagesPerField.printIfExists("lastName", msgStr("lastNameError"))}
 							label={msgStr("lastNameLabel")}
 							name="lastName"
-							tabIndex={3}
+							tabIndex={2}
 							type="text"
 						/>
 
@@ -64,14 +65,26 @@ export default function Account(props: PageProps<Extract<KcContext, { pageId: "a
 							defaultValue={stateChecker}
 							name="stateChecker"
 							type="hidden"
+							isHidden
 						/>
 
 						<div className="account__row">
-							<TheButton value="Save">{ msgStr("doSave") }</TheButton>
-							<TheButton isTransparent value="Cancel">{ msgStr("doCancel") }</TheButton>
+							<TheButton 
+								type="submit" 
+								tabIndex={3}
+							>
+								{ msgStr("doSave") }
+							</TheButton>
+							<TheButton 
+								type="reset" 
+								tabIndex={4}
+								isTransparent 
+							>
+								{ msgStr("doCancel") }
+							</TheButton>
 						</div>
 					</form>
-				</div>
+				</section>
 			</AccountTemplate>
     );
 }

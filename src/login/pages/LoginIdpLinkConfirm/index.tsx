@@ -1,4 +1,4 @@
-import type { PageProps } from "@/login/PageProps";
+import type { PageProps } from "@/types/PageProps";
 import type { KcContext } from "@/login/KcContext";
 import type { I18n } from "@/login/i18n";
 
