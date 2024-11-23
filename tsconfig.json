@@ -29,7 +29,8 @@
             "@/components/*": ["./src/components/*"],
             "@/helpers/*": ["./src/helpers/*"],
             "@/layouts/*": ["./src/layouts/*"],
-            "@/login/*": ["./src/login/*"]
+            "@/login/*": ["./src/login/*"],
+            "@/types/*": ["./src/types/*"]
         }
     },
     "include": ["src"],
