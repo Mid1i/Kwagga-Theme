@@ -64,9 +64,11 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
 
 								{federatedIdentity.removeLinkPossible && (
 									<button className="account__connected-button">
-										<svg className="account__connected-disconnected" height="24" width="24">
-											<use xlinkHref={disconnectIcon}/>
-										</svg>
+										<img
+											className="account__connected-disconnect"
+											alt=""
+											src={disconnectIcon}
+										/>
 									</button>
 								)}
 							</form>
