@@ -32,8 +32,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   useEffect(() => {
     document.title = documentTitle ?? msgStr("accountTitleHtml");
   }, []);
-  console.log(url.logoutUrl)
-  console.log(url.getLogoutUrl())
 
   
   const renderMenuEl = (text: string, iconName: string, id: string, link: string) => {
