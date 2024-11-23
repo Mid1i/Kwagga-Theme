@@ -29,7 +29,7 @@ export default function TheSocialLink(props: TheSocialLinkProps) {
 					src={alias === "google" ? googleLogo : yandexLogo}
 					className="social-link__image"
 				/>
-				{ `${msgStr("doContinueWith")} ${displayName}` }
+				{ `${msgStr("doContinueWith")} ${displayName.toLowerCase() === "yandex" ? "Яндекс" : displayName}` }
 			</a>
 			</>
 	);

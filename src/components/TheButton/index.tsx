@@ -5,6 +5,7 @@ import "./styles.scss";
 
 export default function TheButton(props: TheButtonProps) {
 	const {
+		onClick,
 		isDisabled,
 		isTransparent,
 		isLogout,
@@ -12,12 +13,14 @@ export default function TheButton(props: TheButtonProps) {
 		tabIndex,
 		children,
 		value,
+		type,
 		name
 	} = props;
 
 
 	return (
 		<button 
+			onClick={() => onClick && onClick()}
 			disabled={isDisabled} 
 			tabIndex={tabIndex}
 			className={`
@@ -27,6 +30,7 @@ export default function TheButton(props: TheButtonProps) {
 				${isMargin ? "button--mb" : ""}
 			`}
 			defaultValue={value}
+			type={type ?? "submit"}
 			name={name}
 		>
 			{children}

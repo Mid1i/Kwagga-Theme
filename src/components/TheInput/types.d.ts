@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, FormEvent } from "react";
 
 
 export type BaseInputProps = {
@@ -9,6 +9,10 @@ export type BaseInputProps = {
 	tabIndex?: number;
 	type: string;
 	name: string;
+
+	onInput?: (event:  FormEvent<HTMLInputElement>) => void;
+
+	isHidden?: boolean;
 	
 	error?: string;
 	label?: string;

@@ -27,7 +27,12 @@
 	}
 
 	&--logout {
-		background: $background-negative;
+		align-self: flex-start;
+
+		background: transparent;
+		color: $text-negative;
+
+		width: auto;
 	}
 
 	&--mb {
@@ -46,7 +51,7 @@
 	}
 
 	.button--logout:hover {
-		background: $background-negative-hover;
+		text-decoration: underline;
 	}
 }
 

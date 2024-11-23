@@ -32,6 +32,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   useEffect(() => {
     document.title = documentTitle ?? msgStr("accountTitleHtml");
   }, []);
+  console.log(url.logoutUrl)
+  console.log(url.getLogoutUrl())
 
   
   const renderMenuEl = (text: string, iconName: string, id: string, link: string) => {
@@ -101,14 +103,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
         <ul className="aside-menu__list">
           {renderMenuEl("Данные", "credentials", "account", url.accountUrl)}
-          {renderMenuEl("Вход в аккаунт", "login", "password", url.passwordUrl)}
+          {renderMenuEl("Смена пароля", "login", "password", url.passwordUrl)}
           {renderMenuEl("Активность", "activity", "sessions", url.sessionsUrl)}
           {renderMenuEl("Привязанные аккаунты", "social", "identity", url.socialUrl)}
         </ul>
 
         <a 
           className="aside-menu__logout header__logout"
-          href={url.getLogoutUrl()}
+          href={url.logoutUrl}
         >
           <svg className="aside-menu__logout-icon header__logout-icon" height="24" width="24">
             <use xlinkHref={`${headerIcons}#sign-out`}/>

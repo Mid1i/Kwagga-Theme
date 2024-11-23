@@ -1,3 +1,5 @@
+import { FormEvent } from "react";
+
 import type { BaseInputProps } from "./types";
 
 import "./styles.scss";
@@ -9,8 +11,10 @@ export default function TheInput(props: BaseInputProps) {
 		autocomplete,
 		children,
 		defaultValue,
+		isHidden,
 		error,
 		name,
+		onInput,
 		isReadonly,
 		label,
 		tabIndex,
@@ -19,8 +23,9 @@ export default function TheInput(props: BaseInputProps) {
 
 
 	return (
-		<div className="field">
+		<div className={`field ${isHidden ? "field--hidden" : ""}`}>
 			<input
+				onInput={(event: FormEvent<HTMLInputElement>) => onInput && onInput(event)}
 				autoFocus={autoFocus}
 				autoComplete={autocomplete}
 				className={ `field__input ${type === "password" ? "password" : ""}` }
