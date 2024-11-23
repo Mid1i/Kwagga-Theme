@@ -53,8 +53,6 @@ export default function Password(props: PageProps<Extract<KcContext, { pageId: "
 		checkNewPasswordConfirm(value);
 	}
 
-	console.log(message);
-
 
 	return (
 		<AccountTemplate

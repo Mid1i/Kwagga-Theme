@@ -72,41 +72,43 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
 							</form>
 						</div>
 					))}
-					<section className="account__social">
-						<h2 className="account__social-title">{ msgStr("identityConnectTitle") }</h2>
-						<div className="account__social-items">
-							{federatedIdentity.identities.filter(identity => !identity.connected).map(identity => (
-								<form action={url.socialUrl} method="post" className="account__social-form">
-									<TheInput
-										defaultValue={stateChecker}
-										name="stateChecker"
-										type="hidden"
-										isHidden
-									/>
-									<TheInput
-										defaultValue="add"
-										name="action"
-										type="hidden"
-										isHidden
-									/>
-									<TheInput
-										defaultValue={identity.providerId}
-										name="providerId"
-										type="hidden"
-										isHidden
-									/>
-									<button className="account__social-button">
-										<img
-											className="account__social-icon"
-											alt={identity.displayName}
-											src={identity.displayName.toLowerCase() === "google" ? google : yandex}
+					{federatedIdentity.identities.filter(identity => !identity.connected).length > 0 && (
+						<section className="account__social">
+							<h2 className="account__social-title">{ msgStr("identityConnectTitle") }</h2>
+							<div className="account__social-items">
+								{federatedIdentity.identities.filter(identity => !identity.connected).map(identity => (
+									<form action={url.socialUrl} method="post" className="account__social-form">
+										<TheInput
+											defaultValue={stateChecker}
+											name="stateChecker"
+											type="hidden"
+											isHidden
 										/>
-									</button>
-									<span className="account__social-name">{ identity.displayName.toLowerCase() === "yandex" ? "Яндекс" : identity.displayName }</span>
-								</form>
-							))}
-						</div>
-					</section>
+										<TheInput
+											defaultValue="add"
+											name="action"
+											type="hidden"
+											isHidden
+										/>
+										<TheInput
+											defaultValue={identity.providerId}
+											name="providerId"
+											type="hidden"
+											isHidden
+										/>
+										<button className="account__social-button">
+											<img
+												className="account__social-icon"
+												alt={identity.displayName}
+												src={identity.displayName.toLowerCase() === "google" ? google : yandex}
+											/>
+										</button>
+										<span className="account__social-name">{ identity.displayName.toLowerCase() === "yandex" ? "Яндекс" : identity.displayName }</span>
+									</form>
+								))}
+							</div>
+						</section>
+					)}
 				</section>
 			</AccountTemplate>
     );
