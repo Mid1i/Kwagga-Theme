@@ -1,8 +1,11 @@
+import { useReducer } from "react";
+
 import type { KcContext } from "@/account/KcContext";
 import type { PageProps } from "@/types/PageProps";
 import type { I18n } from "@/account/i18n";
 
 import AccountTemplate from "@/layouts/AccountTemplate";
+import TheButton from "@/components/TheButton"
 import TheInput from "@/components/TheInput";
 
 import disconnectIcon from "@/assets/icons/disconnect.svg";
@@ -16,6 +19,8 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
     const { url, federatedIdentity, stateChecker } = kcContext;
 
     const { msgStr } = i18n;
+
+		const [removedIdentity, setRemovedIdentity] = useReducer(prev => !prev, false);
 
 
     return (
@@ -63,13 +68,27 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
 								/>
 
 								{federatedIdentity.removeLinkPossible && (
-									<button className="account__connected-button">
-										<img
-											className="account__connected-disconnect"
-											alt=""
-											src={disconnectIcon}
-										/>
-									</button>
+									<>
+										<div onClick={setRemovedIdentity} className="account__connected-button">
+											<img
+												className="account__connected-disconnect"
+												alt=""
+												src={disconnectIcon}
+											/>
+										</div>
+
+										<section className={`account__disconnect ${removedIdentity ? "account__disconnect--visible" : ""}`}>
+											<h3 className="account__disconnect-title">{ msgStr("identityDisconnectInstruction") }</h3>
+											<TheButton type="submit">{ msgStr("doRemove") }</TheButton>
+											<TheButton 
+											 	onClick={setRemovedIdentity}
+												type="button" 
+												isTransparent
+											>
+												{ msgStr("doCancel") }
+											</TheButton>
+										</section>
+									</>
 								)}
 							</form>
 						</div>
@@ -111,6 +130,8 @@ export default function FederatedIdentity(props: PageProps<Extract<KcContext, { 
 							</div>
 						</section>
 					)}
+
+					<div className={`blackout ${removedIdentity ? "blackout--visible" : ""}`}></div>
 				</section>
 			</AccountTemplate>
     );
