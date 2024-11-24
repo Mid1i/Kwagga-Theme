@@ -5,7 +5,7 @@ import type { KcContext } from "@/account/KcContext";
 import type { Sessions } from "@/types/Sessions";
 import type { I18n } from "@/account/i18n";
 
-import { useSessionsData, removeSessionById } from "@/account/api/sessions";
+import { useSessions, removeSessionById } from "@/account/api/sessions";
 import { formatDate } from "@/helpers/formatters";
 
 import AccountTemplate from "@/layouts/AccountTemplate";
@@ -23,7 +23,7 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 	
 	const { msgStr } = i18n;
 
-	const { sessionsData } = useSessionsData();
+	const { sessions } = useSessions();
 
 	const [isPopupShown, setIsPopupShown] = useReducer(prev => !prev, false);
 
@@ -74,8 +74,8 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 	}
 
 	useEffect(() => {
-		if (sessionsData) {
-			const currentDevice = sessionsData.filter(device => device.current)[0];
+		if (sessions) {
+			const currentDevice = sessions.filter(device => device.current)[0];
 			const currentInformation = currentDevice.sessions.filter(session => session.current)[0];
 
 			setCurrentSession({
@@ -87,7 +87,7 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 				id: currentInformation.id
 			});
 		}
-	}, [sessionsData]);
+	}, [sessions]);
 
 	useEffect(() => {
 		if (detailedSession.id) setIsPopupShown();
@@ -120,7 +120,7 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 						{ msgStr("doLogoutAllSessions") }
 					</TheButton>
 				</form>
-				{sessionsData && (
+				{(sessions && sessions.length > 0) && (
 					<ul className="account__list">
 						<li onClick={() => setDetailedSession(currentSession)} className="account__list-el">
 							<svg className="account__list-icon" height="24" width="24">
@@ -135,7 +135,7 @@ export default function Sessions(props: PageProps<Extract<KcContext, { pageId: "
 							</span>
 						</li>
 
-						{sessionsData.map(device => device.sessions.map(session => (
+						{sessions.map(device => device.sessions.map(session => (
 							<Fragment key={session.id}>
 								{(!session.current && !device.current) && (
 									<li onClick={() => updateSession(device.os, session)} className="account__list-el">

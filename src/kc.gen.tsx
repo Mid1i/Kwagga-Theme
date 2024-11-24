@@ -21,34 +21,35 @@ export const kcEnvNames: KcEnvName[] = [];
 export const kcEnvDefaults: Record<KcEnvName, string> = {};
 
 type KcContext =
-    | import("./login/KcContext").KcContext
-    | import("./account/KcContext").KcContext
-    ;
+  | import("./login/KcContext").KcContext
+  | import("./account/KcContext").KcContext
+  ;
 
 declare global {
-    interface Window {
-        kcContext?: KcContext;
-    }
+  interface Window {
+    kcContext?: KcContext;
+  }
 }
 
 export const KcLoginPage = lazy(() => import("./login/KcPage"));
 export const KcAccountPage = lazy(() => import("./account/KcPage"));
 
+
 export function KcPage(
-    props: {
-        kcContext: KcContext;
-        fallback?: ReactNode;
-    }
-) {
+  props: {
+    kcContext: KcContext;
+    fallback?: ReactNode;
+  }
+  ) {
     const { kcContext, fallback } = props;
     return (
-        <Suspense fallback={fallback}>
-            {(() => {
-                switch (kcContext.themeType) {
-                    case "login": return <KcLoginPage kcContext={kcContext} />;
-                    case "account": return <KcAccountPage kcContext={kcContext} />;
-                }
-            })()}
-        </Suspense>
+      <Suspense fallback={fallback}>
+        {(() => {
+          switch (kcContext.themeType) {
+            case "login": return <KcLoginPage kcContext={kcContext} />;
+            case "account": return <KcAccountPage kcContext={kcContext} />;
+          }
+        })()}
+      </Suspense>
     );
 }

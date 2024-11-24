@@ -27,6 +27,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   
   const { i18n } = useI18n({ kcContext });
 
+  // TODO: Исправить редиректы при выходе и на странице логина
   const { msgStr } = i18n;
 
   useEffect(() => {
@@ -108,7 +109,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
         <a 
           className="aside-menu__logout header__logout"
-          href={url.logoutUrl}
+          href={url.getLogoutUrl()}
         >
           <svg className="aside-menu__logout-icon header__logout-icon" height="24" width="24">
             <use xlinkHref={`${headerIcons}#sign-out`}/>

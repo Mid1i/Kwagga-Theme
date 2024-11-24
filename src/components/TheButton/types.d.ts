@@ -8,7 +8,7 @@ export type TheButtonProps = {
 	tabIndex?: number;
 	value?: string;
 	name?: string;
-	type?: "submit" | "reset";
+	type?: "button" | "submit" | "reset";
 	
 	isTransparent?: boolean;
 	isMargin?: boolean;

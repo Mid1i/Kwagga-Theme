@@ -28,6 +28,7 @@ const { useI18n, ofTypeI18n } = i18nBuilder
       accountTitle: "Your credentials",
       passwordTitle: "Change password",
       identityConnectTitle: "Connect account",
+      identityDisconnectInstruction: "Remove this identity?",
       identityInstruction: "You can use linked accounts to fill in your profile data.",
       passwordInstruction: "A password will protect your account from hacking.",
       accountInstruction: "In ID, your data is always at hand.",
@@ -49,6 +50,7 @@ const { useI18n, ofTypeI18n } = i18nBuilder
       passwordConfirmNotMatch: "Passwords don't match",
       doEndTheSession: "End the session",
       doLogoutAllSessions: "End all sessions",
+      doRemove: "Remove",
       doSave: "Save",
       doCancel: "Cancel",
       doLogout: "Sign out"
@@ -75,6 +77,7 @@ const { useI18n, ofTypeI18n } = i18nBuilder
       accountTitle: "Ваши данные",
       passwordTitle: "Смена пароля",
       identityConnectTitle: "Привязать аккаунт",
+      identityDisconnectInstruction: "Отвязать учётную запись?",
       identityInstruction: "С помощью привязанных аккаунтов можно заполнить данные профиля.",
       passwordInstruction: "Пароль защитит ваш аккаунт от взлома.",
       accountInstruction: "В ID ваши данные всегда под рукой.",
@@ -96,6 +99,7 @@ const { useI18n, ofTypeI18n } = i18nBuilder
       passwordConfirmNotMatch: "Пароли не совпадают",
       doEndTheSession: "Завершить сеанс",
       doLogoutAllSessions: "Завершить все сеансы",
+      doRemove: "Отвязать",
       doSave: "Сохранить",
       doCancel: "Отменить",
       doLogout: "Выйти"
