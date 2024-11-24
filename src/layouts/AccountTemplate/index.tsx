@@ -27,7 +27,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
   
   const { i18n } = useI18n({ kcContext });
 
-  // TODO: Исправить редиректы при выходе и на странице логина
+  
   const { msgStr } = i18n;
 
   useEffect(() => {
