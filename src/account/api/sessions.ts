@@ -1,35 +1,34 @@
 import { useState, useEffect } from "react";
-import { getOidc } from "../oidc";
+import axios from "axios";
 
 import type { Devices } from "@/types/Sessions";
 
+import { getOidc } from "@/account/oidc";
 
-const authenticatedFetch: typeof fetch = async (path, options) => {
+
+const axiosInstance = axios.create();
+
+axiosInstance.interceptors.request.use(async (config) => {
 	const oidc = await getOidc();
-	
-	return fetch(`${oidc.params.issuerUri}${path}`, {
-		...options,
-		headers: {
-			...options?.headers,
-			Authorization: `Bearer ${oidc.getTokens().accessToken}`,
-			"Content-Type": "application/json"
-		}
-	});
-};
+
+	config.headers.Authorization = `Bearer ${oidc.getTokens().accessToken}`;
+	config.baseURL = oidc.params.issuerUri;
+
+	return config;
+});
 
 
-const getSessionsData = async (): Promise<Devices[]> => authenticatedFetch("/account/sessions/devices").then(response => response.json());
+export const getSessions = () => axiosInstance.get("/account/sessions/devices").then(response => response.data);
 
+export const removeSessionById = (id: string) => axiosInstance.delete(`/account/sessions/${id}`);
 
-export const removeSessionById = async (id: string) => authenticatedFetch(`/account/sessions/${id}`, { method: "delete" });
-
-export const useSessionsData = () => {
-	const [sessionsData, setSessionsData] = useState<Devices[] | undefined>(undefined);
+export const useSessions = () => {
+	const [sessions, setSessions] = useState<Devices[] | undefined>(undefined);
 
 	useEffect(() => {
-		getSessionsData().then(setSessionsData);
+		getSessions().then(setSessions);
 	}, []);
 
 
-	return { sessionsData };
+	return { sessions };
 }
