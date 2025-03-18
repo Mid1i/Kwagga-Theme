@@ -73,12 +73,12 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
           )}
           <TheInput
             autoFocus
-            autocomplete="email"
+            autocomplete="username"
             defaultValue={login.username ?? ""}
-            label={msgStr("emailLabel")}
+            label={msgStr("usernameLabel")}
             name="username"
             tabIndex={1}
-            type="email"
+            type="text"
           />
           <TheInput
             autocomplete="current-password"

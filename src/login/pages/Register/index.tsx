@@ -92,12 +92,21 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
             />
           </div>
           <TheInput
+            autocomplete="username"
+            label={msgStr("usernameLabel")}
+            defaultValue={getCookie("username") ?? ""}
+            error={messagesPerField.existsError("username") ? kcSanitize(messagesPerField.getFirstError("username")) : ""}
+            name="username"
+            tabIndex={3}
+            type="username"
+          />
+          <TheInput
             autocomplete="email"
             label={msgStr("emailLabel")}
             defaultValue={getCookie("email") ?? ""}
-            error={messagesPerField.existsError("username", "email") ? kcSanitize(messagesPerField.getFirstError("username", "email")) : ""}
+            error={messagesPerField.existsError("email") ? kcSanitize(messagesPerField.getFirstError("email")) : ""}
             name="email"
-            tabIndex={3}
+            tabIndex={4}
             type="email"
           />
           <TheInput
@@ -105,7 +114,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
             label={msgStr("passwordLabel")}
             error={messagesPerField.existsError("password") ? kcSanitize(messagesPerField.get("password")) : ""}
             name="password"
-            tabIndex={4}
+            tabIndex={5}
             type={isPasswordShown ? 'text' : 'password'}
           >
             <svg 
@@ -122,7 +131,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
             label={msgStr("passwordConfirmLabel")}
             error={messagesPerField.existsError("password-confirm") ? kcSanitize(messagesPerField.get("password-confirm")) : ""}
             name="password-confirm"
-            tabIndex={5}
+            tabIndex={6}
             type={isPasswordConfirmShown ? 'text' : 'password'}
           >
             <svg 
@@ -135,7 +144,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
             </svg>
           </TheInput>
 
-          <TheButton tabIndex={5}>{ msgStr("doRegister") }</TheButton>
+          <TheButton tabIndex={7}>{ msgStr("doRegister") }</TheButton>
         </form>
 
         {social?.providers && (
@@ -148,7 +157,7 @@ export default function Register(props: PageProps<Extract<KcContext, { pageId: "
                   loginUrl={provider.loginUrl}
                   alias={provider.alias}
                   key={provider.alias}
-                  tabIndex={6 + index}
+                  tabIndex={8 + index}
                   i18n={i18n}
                 />
               ))}
